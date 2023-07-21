@@ -1,6 +1,10 @@
 package config
 
-import "github.com/spf13/viper"
+import (
+	"github.com/joho/godotenv"
+	"github.com/spf13/viper"
+	"log"
+)
 
 type Config struct {
 	Port          string `mapstructure:"PORT"`
@@ -10,17 +14,13 @@ type Config struct {
 }
 
 func LoadConfig() (c Config, err error) {
-	viper.AddConfigPath("./pkg/configs/envs")
-	viper.SetConfigName("dev")
-	viper.SetConfigType("env")
-
-	viper.AutomaticEnv()
-
-	err = viper.ReadInConfig()
-
+	err = godotenv.Load("./pkg/config/envs/dev.env")
 	if err != nil {
+		log.Fatalf("Error loading .env file: %s", err)
 		return
 	}
+
+	viper.AutomaticEnv()
 
 	err = viper.Unmarshal(&c)
 
