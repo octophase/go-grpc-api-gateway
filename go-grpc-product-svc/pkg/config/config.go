@@ -3,8 +3,8 @@ package config
 import "github.com/spf13/viper"
 
 type Config struct {
-	Port  string `json:"PORT"`
-	DBUrl string `json:"DB_URL"`
+	Port  string `mapstructure:"PORT"`
+	DBUrl string `mapstructure:"DB_URL"`
 }
 
 func LoadConfig() (config Config, err error) {
@@ -15,7 +15,6 @@ func LoadConfig() (config Config, err error) {
 	viper.AutomaticEnv()
 
 	err = viper.ReadInConfig()
-
 	if err != nil {
 		return
 	}

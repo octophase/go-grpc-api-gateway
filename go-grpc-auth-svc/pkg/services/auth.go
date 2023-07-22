@@ -79,4 +79,4 @@ func (s *Server) Validate(ctx context.Context, req *pb.ValidateRequest) (*pb.Val
 	}, nil
 }
 
-func (s *Server) mustEmbedUnimplementedAuthServiceServer() {}
+//func (s *Server) mustEmbedUnimplementedAuthServiceServer() {}

@@ -19,7 +19,7 @@ message CreateProductRequest {
 }
 
 message CreateProductResponse {
-  string status = 1;
+  int64 status = 1;
   string error = 2;
   int64 id = 3;
 }
@@ -38,7 +38,7 @@ message FindOneRequest {
 }
 
 message FindOneResponse {
-  string status = 1;
+  int64 status = 1;
   string error = 2;
   FindOneData data = 3;
 }
@@ -51,6 +51,6 @@ message DecreaseStockRequest {
 }
 
 message DecreaseStockResponse {
-  string status = 1;
+  int64 status = 1;
   string error = 2;
 }
