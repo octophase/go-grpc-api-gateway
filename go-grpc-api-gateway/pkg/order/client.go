@@ -14,10 +14,10 @@ type ServiceClient struct {
 }
 
 func InitServiceClient(c *config.Config) pb.OrderServiceClient {
-	cc, err := grpc.Dial(c.OrderSvcUrl, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial(c.OrderSvcUrl, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		fmt.Println("Could not connect:", err)
 	}
 
-	return pb.NewOrderServiceClient(cc)
+	return pb.NewOrderServiceClient(conn)
 }

@@ -1,9 +1,7 @@
 package config
 
 import (
-	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
-	"log"
 )
 
 type Config struct {
@@ -14,13 +12,13 @@ type Config struct {
 }
 
 func LoadConfig() (c Config, err error) {
-	err = godotenv.Load("./pkg/config/envs/dev.env")
-	if err != nil {
-		log.Fatalf("Error loading .env file: %s", err)
+	viper.AddConfigPath("./pkg/config/envs")
+	viper.SetConfigName("dev")
+	viper.SetConfigType("env")
+
+	if err = viper.ReadInConfig(); err != nil {
 		return
 	}
-
-	viper.AutomaticEnv()
 
 	err = viper.Unmarshal(&c)
 

@@ -16,11 +16,11 @@ func main() {
 		log.Fatalln("Failed at config", err)
 	}
 
-	r := gin.Default()
+	app := gin.Default()
 
-	authSvc := *auth.RegisterRoutes(r, &c)
-	product.RegisterRoutes(r, &c, &authSvc)
-	order.RegisterRoutes(r, &c, &authSvc)
+	authSvc := *auth.RegisterRoutes(app, &c)
+	product.RegisterRoutes(app, &c, &authSvc)
+	order.RegisterRoutes(app, &c, &authSvc)
 
-	r.Run(c.Port)
+	app.Run(c.Port)
 }
